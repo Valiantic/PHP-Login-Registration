@@ -26,13 +26,57 @@ if(isset($_POST['first_name']) &&
     $last_name = validate_input($_POST['last_name']);
     $email = validate_input($_POST['email']);
     $pass = validate_input($_POST['pass']);
-    $pass = valdiate_input($_POST['c_pass']);
+    $c_pass = valdiate_input($_POST['c_pass']);
 
+
+    // BLANK FIELD DETECTOR
+    if(empty($first_name)){
+        $errorM = "First name is required";
+        header("Location: ../signup.php?error=$errorM");
+    }else if (empty($last_name)) {
+        $errorM = "Last name is required";
+        header("Location: ../signup.pph?error=$errorM");
+    }else if (empty($email)) {
+        $errorM = "Email address is required";
+        header("Location: ../signup.pph?error=$errorM");
+    }else if (empty($pass)) {
+        $errorM = "Password is required";
+        header("Location: ../signup.pph?error=$errorM");
+    }else if (empty($c_pass)) {
+        $errorM = "Confirm password is required";
+        header("Location: ../signup.pph?error=$errorM");
+    }else if (empty($pass != $c_pass)) {
+        $errorM = "Password and Confirm Password does not Match!";
+        header("Location: ../signup.pph?error=$errorM");
+    }else {
+
+    $sql = "SELECT * FROM users WHERE email=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$email]);
+
+    if($stmt->rowCount() > 0){
+        $errorM = "This email is already associated with another account";
+        header("Location: ../signup.php?error=$errorM");
+
+    }else {
+
+        $hashedpass = password_hash($pass, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$first_name, $last_name, $email, $pass]);
+
+        $successM = "successfully registered!";
+        header("Location: ../signup.php?success=$successM");
+    }
+
+
+    }
 
 
 }
 else {
-    
+    header("Location: ../signup.php");
 }
 
 
