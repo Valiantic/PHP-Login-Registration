@@ -26,7 +26,7 @@ if(isset($_POST['first_name']) &&
     $last_name = validate_input($_POST['last_name']);
     $email = validate_input($_POST['email']);
     $pass = validate_input($_POST['pass']);
-    $c_pass = valdiate_input($_POST['c_pass']);
+    $c_pass = validate_input($_POST['c_pass']);
 
 
     // BLANK FIELD DETECTOR
@@ -35,19 +35,19 @@ if(isset($_POST['first_name']) &&
         header("Location: ../signup.php?error=$errorM");
     }else if (empty($last_name)) {
         $errorM = "Last name is required";
-        header("Location: ../signup.pph?error=$errorM");
+        header("Location: ../signup.php?error=$errorM");
     }else if (empty($email)) {
         $errorM = "Email address is required";
-        header("Location: ../signup.pph?error=$errorM");
+        header("Location: ../signup.php?error=$errorM");
     }else if (empty($pass)) {
         $errorM = "Password is required";
-        header("Location: ../signup.pph?error=$errorM");
+        header("Location: ../signup.php?error=$errorM");
     }else if (empty($c_pass)) {
         $errorM = "Confirm password is required";
-        header("Location: ../signup.pph?error=$errorM");
+        header("Location: ../signup.php?error=$errorM");
     }else if (empty($pass != $c_pass)) {
         $errorM = "Password and Confirm Password does not Match!";
-        header("Location: ../signup.pph?error=$errorM");
+        header("Location: ../signup.ph?error=$errorM");
     }else {
 
     $sql = "SELECT * FROM users WHERE email=?";

@@ -8,7 +8,7 @@
 <body>
 
     <h3>Signup</h3>
-    <form>
+    <form action="app/signup.php" method="POST">
         <label>First Name</label><br/>
         <input type="text" name="first_name" placeholder="Enter your First Name..."/><br/>
         <label>Last Name</label><br/>
