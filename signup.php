@@ -31,7 +31,7 @@
         <label>Password</label><br/>
         <input type="password" name="pass" placeholder="Enter your Password..."/><br/>
         <label>Confirm Password</label><br/>
-        <input type="password" name="c_pass" placeholder="Confirm Passoword..."/><br/>
+        <input type="password" name="c_pass" placeholder="Confirm Password..."/><br/>
         <button type="submit">Sign Up</button>
         <a href="login.php">Login</a>
         

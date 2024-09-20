@@ -45,11 +45,14 @@ if(isset($_POST['first_name']) &&
     }else if (empty($c_pass)) {
         $errorM = "Confirm password is required";
         header("Location: ../signup.php?error=$errorM");
-    }else if (empty($pass != $c_pass)) {
+    // PASSWORD AND CONFIRM PASSWORD CONFIRMATION
+    }else if ($pass != $c_pass) {
         $errorM = "Password and Confirm Password does not Match!";
-        header("Location: ../signup.ph?error=$errorM");
+        header("Location: ../signup.php?error=$errorM");
     }else {
 
+
+    // CHECK IF THE USER IS ALREADY IN THE DATABASE
     $sql = "SELECT * FROM users WHERE email=?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$email]);
@@ -64,7 +67,7 @@ if(isset($_POST['first_name']) &&
 
         $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$first_name, $last_name, $email, $pass]);
+        $stmt->execute([$first_name, $last_name, $email, $hashedpass]);
 
         $successM = "successfully registered!";
         header("Location: ../signup.php?success=$successM");
