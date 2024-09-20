@@ -8,7 +8,13 @@
 <body>
 
     <h3>Login</h3>
-    <form>
+
+    <?php if (isset($_GET['error'])) { ?>
+     	<b style="color: #f00;"><?=$_GET['error']?></b><br>
+      <?php } ?>
+
+      <!-- ACTION TO LOGIN -->
+    <form action="app/login.php" method="POST">
     
         <label>Email</label><br/>
         <input type="email" name="email" placeholder="Enter your Email Address..."/><br/>
